@@ -100,10 +100,12 @@
                         <td th:text="${index.count}"></td>
                         <td>
                             <span th:text="${supplierItems[__${index.index}__].item.name}"></span>
-                            <input type="hidden" th:value="${supplierItems[__${index.index}__].item.id}" th:name="${'supplierItems[__${index.index}__].item.id'}">
+                            <input type="hidden" th:value="${supplierItems[__${index.index}__].item.id}"
+                                   th:name="${'supplierItems[__${index.index}__].item.id'}">
                         </td>
                         <td>
-                            Rs. <input type="text" class="form-control" th:field="*{supplierItems[__${index.index}__].price}">
+                            Rs. <input type="text" class="form-control"
+                                       th:field="*{supplierItems[__${index.index}__].price}">
                         </td>
                         <td>
                             <button class="btn btn-outline-danger" onclick="tableRowRemove(this)">Remove</button>
@@ -144,20 +146,40 @@
             $("#searchValue").attr("name", $(this).val());
         });
 
+        //1. need to create object{id, value}
+        //2. need to create object array
+        //3. add selected item to object array and new row to table after selection option value remove
+// remove item from table
+        //1. catch item id and inner html
+        //2. add new option tag to select
 
         //add new item and price
         $("#item").bind('change', function () {
+
             let selectedValue = $(this).val();
             let id = `#item option[value='${selectedValue}']`;
             let innerHTMLValue = $(id).html();
+
+            let html = `<tr>
+                            <td>${rowCount}</td>
+                            <td>
+                                <span>${innerHTMLValue}</span>
+                                <input type="hidden" name="supplierItems[${rowCount}].item.id" value="${selectedValue}">
+                            </td>
+                            <td>
+                                Rs. <input type="text" class="form-control"                                       name="supplierItems[${rowCount}].price}">
+                            </td>
+                            <td>
+                                <button class="btn btn-outline-danger" onclick="tableRowRemove(this)">Remove</button>
+                             </td>
+                         </tr>`
             $(id).remove();
         })
 
         //table row add
         let tableRowAdd = function () {
-            let
-                $
-            ("#selectedItemInTable").html()
+            let valueSelec = "";
+            $("#selectedItemInTable").html()
         }
 //table row remove
         let tableRowRemove = function () {
@@ -176,9 +198,10 @@
             search_placeholder: 'Search...'
         });*/
 
-    $("#item").bind('change', function () {
-
-    });
+    /*    $("#item").bind('change', function () {
+            let selectdvalue = $(this).children("option:selected").val();
+            alert("selected " + selectdvalue);
+        });*/
 </script>
 </body>
 </html>
