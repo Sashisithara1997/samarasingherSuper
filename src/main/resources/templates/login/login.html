@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title>Thymeleaf Springboot </title>
+
+</head>
+<body id="loginback">
+
+<div class="form-area">
+    <div class="img-area">
+        <img src="../img/user.png" alt="">
+    </div>
+
+    <br/>
+    <br/>
+    <br/>
+
+    <h2 style="font-size:24px;">Samarasinghe Super</h2> <br/>    <br/>
+
+    <form th:action="${'/login'}" method="post">
+        <p> User Name :</p>
+        <input type="text" id="username" th:name="${'username'}" placeholder="Enter User Name" required />
+
+        <p>Password :</p>
+        <input type="password" id="inputPassword" th:name="${'password'}" placeholder="Enter Password" required>
+
+        <div style="margin-top:10px">
+            <button id="btnLogin" class="col-md-12 btn btn-primary"><i class= "fa fa-key" style="margin-right: 10px;font-size: 18px"></i>Login</button>
+        </div>
+
+        <div class="container-fluid " th:if="${param.error}">
+            <p class="bg-white text-capitalize text-danger text-lg-center">Invalid username or password. </p>
+        </div>
+        <div class="container-fluid ">
+            <p id="errorMessage" th:text="${err}" class="bg-white text-capitalize text-danger text-lg-center"></p>
+        </div>
+
+        <div>
+            <a href="#" class="for-pass">Forgot Password ?</a>
+        </div>
+
+    </form>
+
+</div>
+
+&lt;!&ndash;footer include&ndash;&gt;
+<footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+&lt;!&ndash;script include&ndash;&gt;
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+
+</body>
+</html>
+
+
+
