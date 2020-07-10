@@ -16,17 +16,19 @@
     <br/>
     <br/>
 
-    <h2 style="font-size:24px;">Samarasinghe Super</h2> <br/>    <br/>
+    <h2 style="font-size:24px;">Samarasinghe Super</h2> <br/> <br/>
 
     <form th:action="${'/login'}" method="post">
         <p> User Name :</p>
-        <input type="text" id="username" th:name="${'username'}" placeholder="Enter User Name" required />
+        <input type="text" id="username" th:name="${'username'}" placeholder="Enter User Name" required/>
 
         <p>Password :</p>
         <input type="password" id="inputPassword" th:name="${'password'}" placeholder="Enter Password" required>
 
         <div style="margin-top:10px">
-            <button id="btnLogin" class="col-md-12 btn btn-primary"><i class= "fa fa-key" style="margin-right: 10px;font-size: 18px"></i>Login</button>
+            <button id="btnLogin" class="col-md-12 btn btn-primary"><i class="fa fa-key"
+                                                                       style="margin-right: 10px;font-size: 18px"></i>Login
+            </button>
         </div>
 
         <div class="container-fluid " th:if="${param.error}">
@@ -44,9 +46,9 @@
 
 </div>
 
-&lt;!&ndash;footer include&ndash;&gt;
+<!--footer include-->
 <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
-&lt;!&ndash;script include&ndash;&gt;
+<!--script include-->
 <script th:replace="~{fragments/script :: scriptFragment}"></script>
 
 </body>

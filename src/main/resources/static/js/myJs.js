@@ -631,3 +631,8 @@ $(".reveal").on('click', function () {
         $pwd.attr('type', 'password');
     }
 });
+
+/*When edit employee if there is a nic number need to select relevant gender*/
+if ($("#nic").val() !== null || $("#nic").val() === undefined){
+    $("input:radio[name=gender]").filter(`[value=${calculateGender($("#nic").val())}]`).prop('checked',true);
+}

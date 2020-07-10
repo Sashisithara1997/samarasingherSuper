@@ -1,5 +1,6 @@
 package lk.samarasingherSuper.asset.purchaseOrder.controller;
 
+
 import lk.samarasingherSuper.asset.commonAsset.service.CommonService;
 import lk.samarasingherSuper.asset.purchaseOrder.entity.Enum.PurchaseOrderStatus;
 import lk.samarasingherSuper.asset.purchaseOrder.entity.PurchaseOrder;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
 
 @Controller
 @RequestMapping("/purchaseOrder")
@@ -62,7 +64,7 @@ public class PurchaseOrderController {
         if (bindingResult.hasErrors()) {
             return "redirect:/supplierItem/" + purchaseOrder.getId();
         }
-        purchaseOrder.getPurchaseOrderItems()
+        purchaseOrder.getPurchaseOrderSuppliers()
                 .forEach(purchaseOrderItem -> {
                     purchaseOrderItem.setPurchaseOrder(purchaseOrder);
                     //todo need to create batch number
@@ -80,23 +82,23 @@ public class PurchaseOrderController {
             }
         }
         PurchaseOrder purchaseOrderSaved = purchaseOrderService.persist(purchaseOrder);
-/*        if (purchaseOrderSaved.getSupplier().getEmail() != null) {
+        if (purchaseOrderSaved.getSupplier().getEmail() != null) {
             StringBuilder message = new StringBuilder("Item Name\t\t\t\t\tQuantity\t\t\tItem Price\t\t\tTotal(Rs)\n");
-            for (int i = 0; i < purchaseOrder.getPurchaseOrderItems().size(); i++) {
+            for (int i = 0; i < purchaseOrder.getPurchaseOrderSuppliers().size(); i++) {
                 message
-                        .append(purchaseOrder.getPurchaseOrderItems().get(i).getItem().getName())
+                        .append(purchaseOrder.getPurchaseOrderSuppliers().get(i).getSupplier().getName())
                         .append("\t\t\t\t\t")
-                        .append(purchaseOrderSaved.getPurchaseOrderItems().get(i).getQuantity())
+                        .append(purchaseOrderSaved.getPurchaseOrderSuppliers().get(i).getQuantity())
                         .append("\t\t\t")
-                        .append(purchaseOrderSaved.getPurchaseOrderItems().get(i).getPrice()).append("\t\t\t")
+                        .append(purchaseOrderSaved.getPurchaseOrderSuppliers().get(i).getPrice()).append("\t\t\t")
                         .append(operatorService.multiply(
-                                purchaseOrderSaved.getPurchaseOrderItems().get(i).getPrice(),
-                                new BigDecimal(Integer.parseInt(purchaseOrderSaved.getPurchaseOrderItems().get(i).getQuantity()))
+                                purchaseOrderSaved.getPurchaseOrderSuppliers().get(i).getPrice(),
+                                new BigDecimal(Integer.parseInt(purchaseOrderSaved.getPurchaseOrderSuppliers().get(i).getQuantity()))
                         ))
                         .append("\n");
             }
             emailService.sendEmail(purchaseOrderSaved.getSupplier().getEmail(), "Requesting Items According To PO Code " + purchaseOrder.getCode(), message.toString());
-        }*/
+        }
         return "redirect:/purchaseOrder/all";
     }
 
@@ -121,6 +123,5 @@ public class PurchaseOrderController {
         return "redirect:/purchaseOrder/all";
     }
 
-    //todo -> need to  manage item price displaying option and amount calculation
 
 }

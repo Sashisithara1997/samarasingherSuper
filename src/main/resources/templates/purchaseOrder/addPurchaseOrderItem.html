@@ -22,7 +22,7 @@
         <div class="col">
             <h2 class="text-white text-center">
                 <strong>
-                    Supplier Item Management
+                    Purchase Order Management
                 </strong>
             </h2>
         </div>
@@ -40,7 +40,7 @@
     <!--Supplier Search - Start-->
     <div class="offset-1 flex-column" th:if="${searchAreaShow==true}">
         <form id="form" class="form-inline" th:action="${'/supplierItem/find'}"
-              th:object="${supplierDetail}" method="POST">
+              th:object="${supplier}" method="POST">
             <div class="form-row">
                 <label for="searchCriteria" class="mr-5 ml-5">Search By</label>
                 <select class="form-control mr-5 ml-5" id="searchCriteria" tabindex="1" required>
@@ -236,7 +236,10 @@
     let tableRowAdd = function (value) {
         let rows = $("#selectedItemInTable tr").length;
 
-        let rowCount = rows - 1;
+        let rowCount = [[${#lists.size(currentlyBuyingItems)}]];
+        if (rowCount === 0) {
+            rowCount = rows - 1;
+        }
         // let rowCount = itemCount + 1;
 
         let html = `<tr>

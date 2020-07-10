@@ -2,7 +2,7 @@ package lk.samarasingherSuper.asset.purchaseOrder.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonFilter;
-import lk.samarasingherSuper.asset.item.entity.Item;
+import lk.samarasingherSuper.asset.supplier.entity.Supplier;
 import lk.samarasingherSuper.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,8 +19,8 @@ import java.math.BigDecimal;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonFilter("PurchaseOrderItem")
-public class PurchaseOrderItem extends AuditEntity {
+@JsonFilter("PurchaseOrderSupplier")
+public class PurchaseOrderSupplier extends AuditEntity {
     @Column(nullable = false)
     private String quantity;
 
@@ -30,13 +30,13 @@ public class PurchaseOrderItem extends AuditEntity {
     private String code;
 
     @Column(precision = 10, scale = 2)
-    private BigDecimal linetotal;
+    private BigDecimal price;
 
     @ManyToOne
     private PurchaseOrder purchaseOrder;
 
     @ManyToOne
-    private Item item;
+    private Supplier supplier;
 
 
 }

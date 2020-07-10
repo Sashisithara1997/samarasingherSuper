@@ -21,7 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/item")
-public  class ItemController implements AbstractController<Item, Integer> {
+public class ItemController implements AbstractController<Item, Integer> {
     private final ItemService itemService;
     private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
 

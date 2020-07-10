@@ -78,6 +78,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // For developing easy to give permission all lin
 /*
 
+
         http.authorizeRequests(
                         authorizeRequests ->
                                 authorizeRequests
@@ -105,7 +106,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                         .usernameParameter("username")
                                         .passwordParameter("password")
                                         .successHandler(customAuthenticationSuccessHandler())
-                                        .failureForwardUrl("/login")
+                                        .failureUrl("/login")
                           )
                 //Logout controlling
                 .logout(
@@ -129,6 +130,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //Cross site disable
                 .csrf(AbstractHttpConfigurer::disable)
                 .exceptionHandling();
+
 */
     }
 }

@@ -3,6 +3,9 @@ package lk.samarasingherSuper.asset.commonAsset.service;
 
 import lk.samarasingherSuper.asset.employee.controller.EmployeeRestController;
 import lk.samarasingherSuper.asset.item.service.ItemService;
+import lk.samarasingherSuper.asset.purchaseOrder.entity.Enum.PurchaseOrderStatus;
+import lk.samarasingherSuper.asset.purchaseOrder.service.PurchaseOrderService;
+import lk.samarasingherSuper.asset.supplier.entity.Enum.ItemSupplierStatus;
 import lk.samarasingherSuper.asset.supplier.entity.Supplier;
 import lk.samarasingherSuper.asset.supplier.service.SupplierService;
 import lk.samarasingherSuper.util.service.MakeAutoGenerateNumberService;
@@ -26,6 +29,7 @@ public class CommonService {
         this.makeAutoGenerateNumberService = makeAutoGenerateNumberService;
         this.supplierService = supplierService;
         this.itemService = itemService;
+
     }
 
     public String supplierItemAndPurchaseOrderSearch(Supplier supplier, Model model, String htmlFileLocation) {
@@ -58,6 +62,8 @@ public class CommonService {
             model.addAttribute("supplierDetail", suppliers.get(0));
             model.addAttribute("supplierDetailShow", false);
             model.addAttribute("items", itemService.findAll());
+            model.addAttribute("itemSupplierStatus", ItemSupplierStatus.values());
+            model.addAttribute("purchaseOrderStatus", PurchaseOrderStatus.values());
             return htmlFileLocation;
         }
         model.addAttribute("suppliers", suppliers);
@@ -72,12 +78,13 @@ public class CommonService {
     }
 
     public String commonMobileNumberLengthValidator(String mobileTwo) {
-    return mobileTwo;}
+        return mobileTwo;
+    }
 
     //common things to employee and offender - start
     public void commonUrlBuilder(Model model) {
         model.addAttribute("addStatus", true);
-       // model.addAttribute("designations", Designation.values());
+        // model.addAttribute("designations", Designation.values());
 /*        model.addAttribute("provinces", Province.values());
         model.addAttribute("districtUrl", MvcUriComponentsBuilder
                 .fromMethodName(WorkingPlaceRestController.class, "getDistrict", "")
@@ -93,7 +100,6 @@ public class CommonService {
                 .build()
                 .toString());
     }
-
 
 
 }

@@ -29,11 +29,15 @@ public class PurchaseOrder extends AuditEntity {
     private PurchaseOrderStatus purchaseOrderStatus;
 
     @OneToMany(mappedBy = "purchaseOrder", cascade = CascadeType.PERSIST)
-    private List<PurchaseOrderItem> purchaseOrderItems;
+    private List<PurchaseOrderSupplier> purchaseOrderSuppliers;
 
     @ManyToOne
     private Supplier supplier;
 
+    @OneToMany(mappedBy = "purchaseOrder", cascade = CascadeType.PERSIST)
+    private List<PurchaseOrderItem> purchaseOrderItems;
+
    /* @OneToMany(mappedBy = "purchaseOrder")
     private List<Payment> payments;*/
+
 }

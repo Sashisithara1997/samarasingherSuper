@@ -103,20 +103,27 @@
                         </div>
                     </div>
                     <!--Gender-->
-                    <div class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="gender">Gender :</label>
+
+                        <div class="form-row text-right">
+                            <div class="col-md-4">
+                                <label th:for="${gender}">Gender:</label>
+                            <div class="col">
+                                <div class="custom-control custom-checkbox custom-control-inline "
+                                     th:each="genders,index : ${gender}">
+                                    <input class="custom-control-input gender" required
+                                           th:name="${'gender'}"
+                                           th:value="${genders}"
+                                           th:id="${index.index}+${genders}" type="radio"
+                                           th:checked="${genders==gender}"/>
+                                    <label class="custom-control-label"
+                                           th:for="${index.index}+${genders}"
+                                           th:text="${genders.gender}"> radio
+                                    </label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-8">
-                            <select id="gender" th:field="*{gender}" class="form-control" tabindex="7" required>
-                                <option value="">Please select</option>
-                                <option th:each="genders : ${gender}"
-                                        th:text="${genders.gender}"
-                                        th:value="${genders}"
-                                        th:selected="${genders==employee.gender?'selected':'unselected'}"></option>
-                            </select>
                         </div>
-                    </div>
+
                     <!--Date of birth-->
                     <div class="form-row text-right">
                         <div class="col-md-4">

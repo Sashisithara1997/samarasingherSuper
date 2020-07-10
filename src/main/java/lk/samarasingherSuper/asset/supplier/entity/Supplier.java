@@ -18,7 +18,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonFilter("Supplier")
-@ToString
 public class Supplier extends AuditEntity {
 
     @Size(min = 5, message = "Your Company name cannot be accepted")
